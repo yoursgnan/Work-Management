@@ -105,7 +105,6 @@ class WorkItem(models.Model):
                     # updating parent work item ids
                     for parent_id in self.parent_ids:
                         child_ids = self.env['work.item'].search([('parent_ids','in',[parent_id.id,])])
-                        print('child ids',child_ids)
 
                         if child_ids:
                             child_ids_progress = [
@@ -114,7 +113,6 @@ class WorkItem(models.Model):
                             ]
                             # average child progress and setting to parent work item
                             parent_progress = sum(child_ids_progress)/len(child_ids_progress)
-                            print('progress',parent_progress)
                             parent_id.progress = parent_progress
 
                     # updating current work progress
