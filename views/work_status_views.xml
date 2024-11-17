@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!-- Tree View for Work Status -->
+        <record id="view_work_status_tree" model="ir.ui.view">
+            <field name="name">work.status.tree</field>
+            <field name="model">work.status</field>
+            <field name="arch" type="xml">
+                <tree string="Work Status">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                    <field name="final_stage_bool"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View for Work Status -->
+        <record id="view_work_status_form" model="ir.ui.view">
+            <field name="name">work.status.form</field>
+            <field name="model">work.status</field>
+            <field name="arch" type="xml">
+                <form string="Work Status">
+                    <sheet>
+                        <group>
+                            <field name="sequence" widget="sequence"/>
+                            <field name="name"/>
+                            <field name="active"/>
+                            <field name="final_stage_bool"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

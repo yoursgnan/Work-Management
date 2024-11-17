@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!-- Action for Work Priority -->
+        <record id="action_work_priority" model="ir.actions.act_window">
+            <field name="name">Work Priority</field>
+            <field name="res_model">work.priority</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_work_priority_tree"/>
+        </record>
+
+        <!-- Action for Work Status -->
+        <record id="action_work_status" model="ir.actions.act_window">
+            <field name="name">Work Status</field>
+            <field name="res_model">work.status</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_work_status_tree"/>
+        </record>
+
+        <!-- Action for Work Type -->
+        <record id="action_work_type" model="ir.actions.act_window">
+            <field name="name">Work Type</field>
+            <field name="res_model">work.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_work_type_tree"/>
+        </record>
+
+        <record id="action_work_item" model="ir.actions.act_window">
+            <field name="name">Works</field>
+            <field name="res_model">work.item</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="search_view_id" ref="view_work_item_search"/>
+            <field name="context">{'search_default_group_by_status': 1}</field>
+        </record>
+
+         <record id="action_my_work_item" model="ir.actions.act_window">
+            <field name="name">My Work</field>
+            <field name="res_model">work.item</field>
+            <field name="view_mode">kanban,tree,form</field>
+             <field name="search_view_id" ref="view_work_item_search"/>
+             <field name="domain">[('assignee_id','=',uid)]</field>
+             <field name="context">{'my_work_item': True}</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="work_item_form" model="ir.ui.view">
+            <field name="name">Work Item</field>
+            <field name="model">work.item</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="status_id" widget="statusbar" options="{'clickable': '1'}"/>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                        <group>
+                            <div class="oe_title">
+                                <label for="title"><h2>Title</h2></label>
+                                <h2><field name="title"/></h2>
+                            </div>
+                            <div class="oe_priority">
+                                <label for="priority_id"><h2>Priority</h2></label>
+                                <h2><field name="priority_id" options="{'no_create':True, 'no_create_edit':True, 'no_open':True}"/></h2>
+                            </div>
+                            <div>
+                                <label for="work_type_id"><h2>Type</h2></label>
+                                <h2><field name="work_type_id" options="{'no_create':True,'no_create_edit':True,'no_open':True}"/></h2>
+                            </div>
+                            <div>
+                                <label for="progress"><h2>Progress</h2></label>
+                                <h2><field name="progress" widget="progressbar" readonly="1"/></h2>
+                            </div>
+                        </group>
+                        <group>
+                            <group name="work_author" string="Work Author">
+                                <field name="create_uid" readonly="1" options="{'no_create':True,'no_create_edit':True,'no_open':True}"/>
+                                <field name="create_date" readonly="1"/>
+                            </group>
+                            <group name="work_details" string="Work Details">
+                                <field name="assignee_id" options="{'no_create':True,'no_create_edit':True,'no_open':True}"/>
+                                <field name="parent_ids" options="{'no_create':True,'no_create_edit':True,'no_open':True}" widget="many2many_tags"/>
+                                <field name="deadline"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page name="description" string="Description">
+                                <field name="description"/>
+                            </page>
+                            <page name="attachment" string="Attachments">
+                                <field name="attachment_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="attachment_type" invisible="1"/>
+                                        <field name="document_binary" column_invisible="1" attrs="{'invisible':[('attachment_type','!=','document')]}"/>
+                                        <field name="image_binary" column_invisible="1" attrs="{'invisible':[('attachment_type','!=','image')]}"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="name"/>
+                                            <field name="attachment_type"/>
+                                            <field name="document_binary" attrs="{'invisible':[('attachment_type','!=','document')]}"/>
+                                            <field name="image_binary" widget="image" attrs="{'invisible':[('attachment_type','!=','image')]}"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="work_item_tree" model="ir.ui.view">
+            <field name="name">Work Item</field>
+            <field name="model">work.item</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="work_type_id"/>
+                    <field name="title"/>
+                    <field name="description"/>
+                    <field name="status_id"/>
+                    <field name="progress" widget="progressbar" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_work_item_kanban" model="ir.ui.view">
+            <field name="name">work.item.kanban</field>
+            <field name="model">work.item</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_view">
+                    <field name="title"/>
+                    <field name="description"/>
+                    <field name="work_type_id"/>
+                    <field name="priority_id"/>
+                    <field name="deadline"/>
+                    <field name="status_id"/>
+                    <field name="progress"/>
+                    <field name="assignee_id"/>
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                            <div t-attf-class="oe_kanban_card o_priority_#{record.priority_id.raw_value}">
+                                <div class="oe_kanban_content">
+                                    <div class="oe_kanban_details">
+                                        <!-- Title -->
+                                        <div class="oe_kanban_title">
+                                            <field name="title"/>
+                                        </div>
+
+                                        <!-- Work Type and Status -->
+                                        <div class="oe_kanban_secondary">
+                                            <t t-esc="record.work_type_id.value" />
+                                            |
+                                            <t t-esc="record.status_id.value" />
+                                        </div>
+
+                                        <!-- Assignee and Deadline -->
+                                        <div class="oe_kanban_footer">
+                                            <span class="oe_kanban_assignee">
+                                                <t t-esc="record.assignee_id.value" />
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_work_item_search" model="ir.ui.view">
+            <field name="name">work.item.search</field>
+            <field name="model">work.item</field>
+            <field name="arch" type="xml">
+                <search>
+                    <!-- Group by filters -->
+                    <group expand="1">
+                        <filter string="Group by Status" name="group_by_status" context="{'group_by': 'status_id'}"/>
+                        <filter string="Group by Assignee" name="group_by_assignee" context="{'group_by': 'assignee_id'}"/>
+                    </group>
+
+                    <!-- Search field -->
+                    <field name="name"/>
+                    <field name="status_id"/>
+                    <field name="assignee_id"/>
+                    <field name="deadline"/>
+                </search>
+            </field>
+        </record>
+
+
+
+    </data>
+</odoo>

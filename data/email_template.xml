@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="mail_template_work_item" model="mail.template">
+            <field name="name">Work Item Created</field>
+            <field name="model_id" ref="work_management.model_work_item"/>
+            <field name="subject">${object.name} - ${object.title}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear ${object.assignee_id.name},
+                        <br /><br />
+                        ${object.title}
+                        <br />
+                        ${object.description}
+                        <br /><br />
+                        From,
+                        Odoo Bot
+                    </p>
+                </div>
+            </field>
+<!--            <field name="report_name">${(object.name or '').replace('/','_')}</field>-->
+            <field name="lang">${object.lang}</field>
+        </record>
+    </data>
+</odoo>

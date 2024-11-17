@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_work_item_user,work.item.user,model_work_item,base.group_user,1,1,1,1
+access_work_status_user,work.status.user,model_work_status,base.group_user,1,1,1,1
+access_work_type_user,work.type.user,model_work_type,base.group_user,1,1,1,1
+access_work_priority_user,work.priority.user,model_work_priority,base.group_user,1,1,1,1
+access_work_item_attachment_user,work.item.attachment.user,model_work_item_attachment,base.group_user,1,1,1,1

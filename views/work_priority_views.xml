@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!-- Tree View for Work Priority -->
+        <record id="view_work_priority_tree" model="ir.ui.view">
+            <field name="name">work.priority.tree</field>
+            <field name="model">work.priority</field>
+            <field name="arch" type="xml">
+                <tree string="Work Priority">
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View for Work Priority -->
+        <record id="view_work_priority_form" model="ir.ui.view">
+            <field name="name">work.priority.form</field>
+            <field name="model">work.priority</field>
+            <field name="arch" type="xml">
+                <form string="Work Priority">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

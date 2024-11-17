@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!-- Menu for Work Management Configuration -->
+        <menuitem id="work_management_root" name="Work Management"/>
+
+        <menuitem id="work_configuration_root" sequence="3" name="Configuration" parent="work_management_root"/>
+
+        <!-- Work Priority Menu -->
+        <menuitem id="menu_work_priority" name="Work Priority"
+                  parent="work_configuration_root"
+                  action="action_work_priority"/>
+
+        <!-- Work Status Menu -->
+        <menuitem id="menu_work_status" name="Work Status"
+                  parent="work_configuration_root"
+                  action="action_work_status"/>
+
+        <!-- Work Type Menu -->
+        <menuitem id="menu_work_type" name="Work Type"
+                  parent="work_configuration_root"
+                  action="action_work_type"/>
+
+        <menuitem id="menu_work_item"
+                  name="Works"
+                  sequence="2"
+                  action="action_work_item"
+                  parent="work_management_root"/>
+
+        <menuitem id="my_work_item"
+                  name="My Work"
+                  sequence="1"
+                  action="action_my_work_item"
+                  parent="work_management_root"/>
+    </data>
+</odoo>

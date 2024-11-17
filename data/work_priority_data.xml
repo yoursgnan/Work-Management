@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="priority_p1" model="work.priority">
+            <field name="name">P1</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="priority_p2" model="work.priority">
+            <field name="name">P2</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="priority_p3" model="work.priority">
+            <field name="name">P3</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</odoo>
