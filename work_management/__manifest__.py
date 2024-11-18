@@ -47,7 +47,7 @@ Who Can Use It?
         'views/action_items.xml',
         'views/menu_items.xml',
     ],
-    'license': 'OEEL-1',
+    'license': 'OPL-1',
     'installable': True,
     'application': True,
 }
