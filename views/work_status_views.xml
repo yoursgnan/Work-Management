@@ -7,7 +7,7 @@
             <field name="model">work.status</field>
             <field name="arch" type="xml">
                 <tree string="Work Status">
-                    <field name="sequence"/>
+                    <field name="sequence" widget="handle"/>
                     <field name="name"/>
                     <field name="active"/>
                     <field name="final_stage_bool"/>

@@ -119,6 +119,10 @@ class WorkItem(models.Model):
                     vals.update({
                         'progress': 100,
                     })
+                else:
+                    vals.update({
+                        'progress': 0
+                    })
 
 
         return super(WorkItem, self).write(vals)
