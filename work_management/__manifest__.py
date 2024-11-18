@@ -47,6 +47,7 @@ Who Can Use It?
         'views/action_items.xml',
         'views/menu_items.xml',
     ],
+    'author': 'Gnana Prakash',
     'license': 'OPL-1',
     'installable': True,
     'application': True,
